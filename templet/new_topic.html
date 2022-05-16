@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%block title%}new topic{%endblock%}
+
+{% block breadcrumb %}
+        <ol class="breadcrumb"><a href="{% url 'index'%}">Boards</a></ol>
+        <ol class="breadcrumb"><a href="{% url 'board_topics' the_board.pk%}">/ {{the_board.name}}</a></ol>
+        <ol class="breadcrumb">/ new topic</ol>
+{%endblock%}
+
+{%block content%}
+<form method="post" novalidate>
+    {%csrf_token%}
+    {% include 'includes/forms.html'%}
+<button type="submit" class="btn btn-success">Add</button> 
+</form>
+{%endblock%}

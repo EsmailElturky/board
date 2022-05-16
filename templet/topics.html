@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%block title%}{{board.name}}{%endblock%}
+{% block breadcrumb %}
+        <ol class="breadcrumb"><a href="{% url 'index'%}">Boards / </a></ol>
+        <ol class="breadcrumb">{{the_board.name}}</ol>
+{%endblock%}
+{%block content%}
+<a href="{% url 'new topic' the_board.pk%}" class="btn btn-primary">New Topic</a>
+<table class="table">
+        <thead class="thead-dark">
+                <tr>
+                        <th>topic</th>
+                        <th>created by</th>
+                        <th>posts</th>
+                        <th>views</th>
+                        <th>created dt</th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for topic in topics %}
+                <tr>
+                        <td><a href="{% url 'topic_posts' the_board.pk topic.pk%}" >{{topic.subject}}</a></td>
+                        <td>{{topic.created_by.username}}</td>
+                        <td>{{topic.comments}}</td>
+                        <td>{{topic.views}}</td>
+                        <td>{{topic.creared_dt}}</td>
+                </tr>
+                {%endfor%}
+        </tbody>
+</table>
+{%endblock%}

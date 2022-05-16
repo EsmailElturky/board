@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%block title%}{{topic.subject}}{%endblock%}
+{% block breadcrumb %}
+        <ol class="breadcrumb"><a href="{% url 'index'%}">Boards / </a></ol>
+        <ol class="breadcrumb"><a href="{% url 'board_topics' topic.board.pk%}">{{topic.board.name}} / </a></ol>
+        <ol class="breadcrumb">{{topic.subject}}</ol>
+        <ol class="breadcrumb">Post reply</ol>
+{%endblock%}
+{%block content%}
+<form method="post" class="mb-4">
+    {%csrf_token%}
+    {%include 'includes/forms.html'%}
+    <button type="submit" class="btn btn-succuss">Post the reply</button>
+</form>
+{%endblock%}
